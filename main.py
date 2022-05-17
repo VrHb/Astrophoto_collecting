@@ -1,7 +1,7 @@
 import os
 import os.path
 import pathlib
-import pprint
+
 from urllib.parse import urlparse, unquote
 
 import requests
