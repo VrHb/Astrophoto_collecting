@@ -1,6 +1,6 @@
 .env
 env/
-nasa_epic_images/
+epic_nasa_images/
 nasa_images/
 spacex_images/
 __pycache__/
