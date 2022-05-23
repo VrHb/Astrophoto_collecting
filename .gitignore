@@ -1,6 +1,4 @@
 .env
 env/
-epic_nasa_images/
-nasa_images/
-spacex_images/
+images/
 __pycache__/
