@@ -7,15 +7,15 @@ from dotenv import load_dotenv
 import asyncio
 import telegram
 
-PHOTO_DIR = "nasa_epic_images"
+PHOTO_DIR = "images"
 
 
-def choice_photo() -> str | None:
-    """Choice photo from directory"""
-    photos = os.walk(PHOTO_DIR)
-    for photo in photos:
-        random_photo = random.choice(photo[2])
-        return random_photo
+def get_filenames() -> list[str] | None:
+    """Get list filenames of photos from directory"""
+    photo_dir = os.walk(PHOTO_DIR)
+    for item in photo_dir:
+        list_photos = item[2]
+        return list_photos
    
 
 async def main():
@@ -27,13 +27,15 @@ async def main():
         )
         await bot.send_photo(
             chat_id=-642797640,
-            photo=open(f"nasa_epic_images/{choice_photo()}", "rb")
+            photo=open(f"images/{photo}", "rb")
         )
 
 
 if __name__ == "__main__":
     load_dotenv()
+    list_photos = get_filenames()
     while True:
-        asyncio.run(main())
-        time.sleep(int(os.getenv("LATENCY")))
+        for photo in list_photos:
+            asyncio.run(main())
+            time.sleep(int(os.getenv("LATENCY")))
 
