@@ -3,3 +3,4 @@ env/
 nasa_epic_images/
 nasa_images/
 spacex_images/
+__pycache__/
