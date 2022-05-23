@@ -26,7 +26,7 @@ async def main():
         )
         await bot.send_photo(
             chat_id=str(os.getenv("CHAT_ID")),
-            photo=open(f"images/{photo}", "rb")
+            photo=open(f"images/{file}", "rb")
         )
 
 
