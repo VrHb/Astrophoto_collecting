@@ -9,9 +9,11 @@ import telegram
 
 
 
+PHOTO_DIR = "nasa_epic_images"
+
 def choice_photo() -> str | None:
     """Choice photo from directory"""
-    photos = os.walk("nasa_epic_images")
+    photos = os.walk(PHOTO_DIR)
     for photo in photos:
         random_photo = random.choice(photo[2])
         return random_photo
