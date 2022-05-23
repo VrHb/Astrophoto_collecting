@@ -7,47 +7,48 @@ from dateutil.parser import parse
 
 from api_operations import download_image, get_file_extensions
 
-
-
 START_DATE = "2022-04-01"
 IMAGES_DIR = "nasa_images/"
 EPIC_IMAGES_DIR = "epic_nasa_images/"
 
+
 def get_apod_photo() -> None:
     payload = {
-    "api_key": os.getenv("NASA_API_KEY"),
-    "start_date": START_DATE
+        "api_key": os.getenv("NASA_API_KEY"),
+        "start_date": START_DATE
     }
     response = requests.get(
-            "https://api.nasa.gov/planetary/apod", 
-            params=payload
-            )
+        "https://api.nasa.gov/planetary/apod",
+        params=payload
+    )
     json_response = response.json()
     for index, item in enumerate(json_response, start=1):
         download_image(
-                url=item["url"], 
-                path=IMAGES_DIR, 
-                name=f"nasa_image_{index}{get_file_extensions(item['url'])}"
-                )
+            url=item["url"],
+            path=IMAGES_DIR,
+            name=f"nasa_image_{index}{get_file_extensions(item['url'])}"
+        )
 
 
 def get_epic_photo() -> None:
     payload = {
-    "api_key": os.getenv("NASA_API_KEY")
+        "api_key": os.getenv("NASA_API_KEY")
     }
     response = requests.get(
-            "https://api.nasa.gov/EPIC/api/natural/images", 
-            params=payload
-            )
+        "https://api.nasa.gov/EPIC/api/natural/images",
+        params=payload
+    )
     json_response = response.json()
     for item in json_response:
         dt = parse(item["date"])
-        nasa_epic_link = f"https://api.nasa.gov/EPIC/archive/natural/{dt.strftime('%Y/%m/%d')}/png/{item['image']}.png?api_key={os.getenv('NASA_API_KEY')}"
+        nasa_epic_link = f"""https://api.nasa.gov/EPIC/archive/natural/\
+{dt.strftime('%Y/%m/%d')}/png/\
+{item['image']}.png?api_key={os.getenv('NASA_API_KEY')}"""
         download_image(
-                url=nasa_epic_link, 
-                path=EPIC_IMAGES_DIR, 
-                name=f"{item['image']}{get_file_extensions(nasa_epic_link)}"
-                )
+            url=nasa_epic_link,
+            path=EPIC_IMAGES_DIR,
+            name=f"{item['image']}{get_file_extensions(nasa_epic_link)}"
+        )
 
 
 def main():
