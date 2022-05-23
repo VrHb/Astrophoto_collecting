@@ -9,12 +9,12 @@ import telegram
 PHOTO_DIR = "images"
 
 
-def get_filenames() -> list[str] | None:
+def get_filenames_list() -> list[str] | None:
     """Get list filenames of photos from directory"""
     photo_dir = os.walk(PHOTO_DIR)
     for item in photo_dir:
-        list_photos = item[2]
-        return list_photos
+        list_filenames = item[2]
+        return list_filenames
    
 
 async def main():
@@ -32,9 +32,9 @@ async def main():
 
 if __name__ == "__main__":
     load_dotenv()
-    list_photos = get_filenames()
+    list_files = get_filenames_list()
     while True:
-        for photo in list_photos:
+        for file in list_files:
             asyncio.run(main())
             time.sleep(int(os.getenv("LATENCY")))
 
