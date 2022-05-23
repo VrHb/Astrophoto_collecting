@@ -8,8 +8,7 @@ from dateutil.parser import parse
 from api_operations import download_image, get_file_extensions
 
 START_DATE = "2022-04-01"
-IMAGES_DIR = "nasa_images/"
-EPIC_IMAGES_DIR = "epic_nasa_images/"
+IMAGES_DIR = "images/"
 
 
 def get_apod_photo() -> None:
@@ -46,7 +45,7 @@ def get_epic_photo() -> None:
 {item['image']}.png?api_key={os.getenv('NASA_API_KEY')}"""
         download_image(
             url=nasa_epic_link,
-            path=EPIC_IMAGES_DIR,
+            path=IMAGES_DIR,
             name=f"{item['image']}{get_file_extensions(nasa_epic_link)}"
         )
 

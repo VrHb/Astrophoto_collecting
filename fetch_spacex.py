@@ -3,7 +3,7 @@ import requests
 from api_operations import download_image, get_file_extensions
 
 ID_LAUNCH = "6243ad8baf52800c6e919252"
-IMAGES_DIR = "spacex_images/"
+IMAGES_DIR = "images/"
 
 
 def fetch_spacex_launch(id_launch: str) -> None:
