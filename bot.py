@@ -1,6 +1,5 @@
 import os
 import time
-import random
 
 from dotenv import load_dotenv
 
@@ -23,10 +22,10 @@ async def main():
     async with bot:
         await bot.send_message(
                 text="Hi There, a'm a Space Owl!",
-                chat_id=-642797640
+                chat_id=str(os.getenv("CHAT_ID"))
         )
         await bot.send_photo(
-            chat_id=-642797640,
+            chat_id=str(os.getenv("CHAT_ID")),
             photo=open(f"images/{photo}", "rb")
         )
 
