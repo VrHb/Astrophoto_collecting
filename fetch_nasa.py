@@ -11,9 +11,9 @@ START_DATE = "2022-04-01"
 IMAGES_DIR = "images/"
 
 
-def get_apod_photo() -> None:
+def get_apod_photo(api_key: str | None) -> None:
     payload = {
-        "api_key": os.getenv("NASA_API_KEY"),
+        "api_key": api_key,
         "start_date": START_DATE
     }
     response = requests.get(
@@ -29,9 +29,9 @@ def get_apod_photo() -> None:
         )
 
 
-def get_epic_photo() -> None:
+def get_epic_photo(api_key: str | None) -> None:
     payload = {
-        "api_key": os.getenv("NASA_API_KEY")
+        "api_key": api_key
     }
     response = requests.get(
         "https://api.nasa.gov/EPIC/api/natural/images",
@@ -42,7 +42,7 @@ def get_epic_photo() -> None:
         dt = parse(item["date"])
         nasa_epic_link = f"""https://api.nasa.gov/EPIC/archive/natural/\
 {dt.strftime('%Y/%m/%d')}/png/\
-{item['image']}.png?api_key={os.getenv('NASA_API_KEY')}"""
+{item['image']}.png?api_key={api_key}"""
         download_image(
             url=nasa_epic_link,
             path=IMAGES_DIR,
@@ -52,8 +52,9 @@ def get_epic_photo() -> None:
 
 def main():
     load_dotenv()
-    get_epic_photo()
-    get_apod_photo()
+    NASA_API_KEY = os.getenv("NASA_API_KEY")
+    get_epic_photo(api_key=NASA_API_KEY)
+    get_apod_photo(api_key=NASA_API_KEY)
 
 if __name__ == "__main__":
     main()
