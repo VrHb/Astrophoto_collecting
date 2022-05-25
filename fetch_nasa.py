@@ -2,8 +2,8 @@ import os
 import os.path
 
 import requests
-from dotenv import load_dotenv
 from dateutil.parser import parse
+from dotenv import load_dotenv
 
 from api_operations import download_image, getting_file_extension_from_link
 

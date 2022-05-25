@@ -1,10 +1,9 @@
+import asyncio
 import os
 import time
 
-from dotenv import load_dotenv
-
-import asyncio
 import telegram
+from dotenv import load_dotenv
 from telegram._utils.types import FileInput
 
 PHOTO_DIR = "images"
