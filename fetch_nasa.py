@@ -5,7 +5,7 @@ import requests
 from dotenv import load_dotenv
 from dateutil.parser import parse
 
-from api_operations import download_image, get_file_extensions
+from api_operations import download_image, getting_file_extension_from_link
 
 START_DATE = "2022-04-01"
 IMAGES_DIR = "images/"
@@ -25,7 +25,7 @@ def get_apod_photo(api_key: str | None) -> None:
         download_image(
             url=item["url"],
             path=IMAGES_DIR,
-            name=f"nasa_image_{index}{get_file_extensions(item['url'])}"
+            name=f"nasa_image_{index}{getting_file_extension_from_link(item['url'])}"
         )
 
 
@@ -46,7 +46,7 @@ def get_epic_photo(api_key: str | None) -> None:
         download_image(
             url=nasa_epic_link,
             path=IMAGES_DIR,
-            name=f"{item['image']}{get_file_extensions(nasa_epic_link)}"
+            name=f"{item['image']}{getting_file_extension_from_link(nasa_epic_link)}"
         )
 
 
