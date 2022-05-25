@@ -7,7 +7,7 @@ import requests
 
 
 def download_image(url: str, path: str, name: str) -> None:
-    """Downlad image from url"""
+    """Download image from url"""
     response = requests.get(url)
     response.raise_for_status()
     pathlib.Path(path).mkdir(parents=True, exist_ok=True)

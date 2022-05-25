@@ -1,6 +1,6 @@
 import requests
 
-from api_operations import download_image, getting_file_extension_from_link
+from file_operations import download_image, getting_file_extension_from_link
 
 ID_LAUNCH = "6243ad8baf52800c6e919252"
 IMAGES_DIR = "images/"

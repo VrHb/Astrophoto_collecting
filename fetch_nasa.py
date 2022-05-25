@@ -5,7 +5,7 @@ import requests
 from dateutil.parser import parse
 from dotenv import load_dotenv
 
-from api_operations import download_image, getting_file_extension_from_link
+from file_operations import download_image, getting_file_extension_from_link
 
 START_DATE = "2022-04-01"
 IMAGES_DIR = "images/"
