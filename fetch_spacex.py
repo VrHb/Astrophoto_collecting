@@ -2,14 +2,14 @@ import requests
 
 from file_operations import download_image, get_file_extension_from_link
 
-ID_LAUNCH = "6243ad8baf52800c6e919252"
+LAUNCH_ID = "6243ad8baf52800c6e919252"
 IMAGES_DIR = "images/"
 
 
-def fetch_spacex_launch(id_launch: str) -> None:
-    """fetch sacex launch by id_launch"""
+def fetch_spacex_launch(launch_id: str) -> None:
+    """fetch sacex launch by launch_id"""
     response = requests.get(
-        url=f"https://api.spacexdata.com/v4/launches/{id_launch}"
+        url=f"https://api.spacexdata.com/v4/launches/{launch_id}"
     )
     spacex_launches_list = response.json()
     spacex_image_links = spacex_launches_list["links"]["flickr"]["original"]
@@ -22,7 +22,7 @@ def fetch_spacex_launch(id_launch: str) -> None:
 
 
 def main():
-    fetch_spacex_launch(ID_LAUNCH)
+    fetch_spacex_launch(LAUNCH_ID)
 
 if __name__ == "__main__":
     main()
