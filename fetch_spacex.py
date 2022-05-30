@@ -1,6 +1,6 @@
 import requests
 
-from file_operations import download_image, getting_file_extension_from_link
+from file_operations import download_image, get_file_extension_from_link
 
 ID_LAUNCH = "6243ad8baf52800c6e919252"
 IMAGES_DIR = "images/"
@@ -17,7 +17,7 @@ def fetch_spacex_launch(id_launch: str) -> None:
         download_image(
             url=link,
             path=IMAGES_DIR,
-            name=f"spacex_launch_{id_launch}_{index}{getting_file_extension_from_link(link)}"
+            name=f"spacex_launch_{id_launch}_{index}{get_file_extension_from_link(link)}"
         )
 
 

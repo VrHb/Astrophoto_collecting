@@ -15,7 +15,7 @@ def download_image(url: str, path: str, name: str) -> None:
         file.write(response.content)
 
 
-def getting_file_extension_from_link(url: str) -> str:
+def get_file_extension_from_link(url: str) -> str:
     """Getting file extension from url"""
     parsed_url = urlparse(url)
     path = unquote(parsed_url.path)
