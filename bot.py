@@ -8,7 +8,6 @@ from telegram._utils.types import FileInput
 
 PHOTO_DIR = "images"
 
-
 def get_filenames_list() -> list[str] | None:
     """Get list filenames of photos from directory"""
     photo_dir = os.walk(PHOTO_DIR)
@@ -17,7 +16,11 @@ def get_filenames_list() -> list[str] | None:
         return list_filenames
    
 
-async def main(bot_token: str | None, chat_id: str | None, file: FileInput):
+async def main(file: FileInput):
+    load_dotenv()
+    bot_token = os.getenv("BOT_TOKEN")
+    chat_id = os.getenv("CHAT_ID")
+    latency = int(os.getenv("LATENCY"))
     bot = telegram.Bot(bot_token)
     async with bot:
         await bot.send_message(
@@ -28,24 +31,15 @@ async def main(bot_token: str | None, chat_id: str | None, file: FileInput):
             chat_id=chat_id,
             photo=file
         )
-
+    time.sleep(latency)
 
 if __name__ == "__main__":
-    load_dotenv()
-    BOT_TOKEN = os.getenv("BOT_TOKEN")
-    CHAT_ID = os.getenv("CHAT_ID")
-    LATENCY = int(os.getenv("LATENCY"))
     list_files = get_filenames_list()
     while True:
         for file in list_files:
             with open(f"images/{file}", "rb") as file:
                 file_input = file.read()
             asyncio.run(
-                main(
-                    bot_token=BOT_TOKEN,
-                    chat_id=CHAT_ID,
-                    file=file_input
-                )
+                main(file=file_input)
             )
-            time.sleep(LATENCY)
 
