@@ -17,7 +17,7 @@ def fetch_spacex_launch(launch_id: str) -> None:
         download_image(
             url=link,
             path=IMAGES_DIR,
-            name=f"spacex_launch_{id_launch}_{index}{get_file_extension_from_link(link)}"
+            name=f"spacex_launch_{launch_id}_{index}{get_file_extension_from_link(link)}"
         )
 
 
