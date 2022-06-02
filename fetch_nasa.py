@@ -39,10 +39,10 @@ def get_epic_photo(api_key: str | None) -> None:
     )
     nasa_epic_images = response.json()
     for item in nasa_epic_images:
-        dt = parse(item["date"])
-        nasa_epic_link = f"""https://api.nasa.gov/EPIC/archive/natural/\
-{dt.strftime('%Y/%m/%d')}/png/\
-{item['image']}.png?api_key={api_key}"""
+        dt = (parse(item["date"])).strftime('%Y/%m/%d')
+        url_params = f"{dt}/png/{item['image']}.png?api_key={api_key}"
+        url = "https://api.nasa.gov/EPIC/archive/natural/"
+        nasa_epic_link = f"{url}{url_params}"
         download_image(
             url=nasa_epic_link,
             path=IMAGES_DIR,
