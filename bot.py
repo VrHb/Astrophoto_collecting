@@ -12,8 +12,8 @@ def get_filenames_list() -> list[str] | None:
     """Get list filenames of photos from directory"""
     photo_dir = os.walk(PHOTO_DIR)
     for item in photo_dir:
-        list_filenames = item[2]
-        return list_filenames
+        filenames = item[2]
+        return filenames
    
 
 async def main(file: FileInput):

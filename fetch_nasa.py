@@ -20,8 +20,8 @@ def get_apod_photo(api_key: str | None) -> None:
         "https://api.nasa.gov/planetary/apod",
         params=payload
     )
-    nasa_apod_list = response.json()
-    for index, item in enumerate(nasa_apod_list, start=1):
+    nasa_apod_info = response.json()
+    for index, item in enumerate(nasa_apod_info, start=1):
         download_image(
             url=item["url"],
             path=IMAGES_DIR,
@@ -37,8 +37,8 @@ def get_epic_photo(api_key: str | None) -> None:
         "https://api.nasa.gov/EPIC/api/natural/images",
         params=payload
     )
-    nasa_epic_images_list = response.json()
-    for item in nasa_epic_images_list:
+    nasa_epic_images = response.json()
+    for item in nasa_epic_images:
         dt = parse(item["date"])
         nasa_epic_link = f"""https://api.nasa.gov/EPIC/archive/natural/\
 {dt.strftime('%Y/%m/%d')}/png/\

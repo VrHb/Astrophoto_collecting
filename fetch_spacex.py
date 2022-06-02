@@ -11,8 +11,8 @@ def fetch_spacex_launch(launch_id: str) -> None:
     response = requests.get(
         url=f"https://api.spacexdata.com/v4/launches/{launch_id}"
     )
-    spacex_launches_list = response.json()
-    spacex_image_links = spacex_launches_list["links"]["flickr"]["original"]
+    spacex_launches = response.json()
+    spacex_image_links = spacex_launches["links"]["flickr"]["original"]
     for index, link in enumerate(spacex_image_links, start=1):
         download_image(
             url=link,
